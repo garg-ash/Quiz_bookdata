@@ -27,23 +27,23 @@ const Main = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(5); // Initial timer value set to 5 seconds
+  const [timer, setTimer] = useState(5); 
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer(prevTimer => {
         if (prevTimer === 1) {
           handleNextQuestion();
-          return 5; // Reset timer to 5 seconds for the next question
+          return 5; 
         } else {
-          return prevTimer - 1; // Decrement timer by 1 second
+          return prevTimer - 1; 
         }
       });
-    }, 1000); // Update timer every second
+    }, 1000); 
 
-    // Clear interval on component unmount
+    
     return () => clearInterval(interval);
-  }, [currentQuestion]); // Run effect whenever currentQuestion changes
+  }, [currentQuestion]); 
 
   const handleOptionSelect = option => {
     setSelectedOption(option);
@@ -56,7 +56,7 @@ const Main = () => {
   const handleNextQuestion = () => {
     setSelectedOption(null);
     setCurrentQuestion(prevQuestion => prevQuestion + 1);
-    setTimer(5); // Reset timer to 5 seconds for the next question
+    setTimer(5); 
   };
 
   return (
