@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import './Quiz.css'
 
 const questions = [
   {
-    question: "2+2",
-    options: [1, 2, 3, 4],
-    answer: 4
+    question: "Which monuments is this?",
+    options: ["HawaMahal", "Alberthall", "JantarMantar", "AmberFort"],
+    answer: "HawaMahal",
+    image: "https://www.holidify.com/images/cmsuploads/compressed/h4_20170822181427.PNG" // URL of the image for the first question
   },
   {
-    question: "2*2*2-8",
-    options: [8, 0, -2, 1],
-    answer: 0
+    question: "Capital of France",
+    options: ["Paris", "Marseille", "Lyon", "Toulouse",],
+    answer: "Paris",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiVoQJvfQufxs_MaY172KyVWtUFs4gbOZmezY0S_hclQ&s" // URL of the image for the second question
   },
   {
-    question: "3+3+3",
-    options: [0, 333, 6, 9],
-    answer: 9
+    question: "When was National Cinema Day?",
+    options: ["October 13", "November 13", "December 13", "January 13"],
+    answer: "October 13",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQenkaP77Dp7rNgB8eDGYuE50KIaItys90EeBiZ39ll-A&s" // URL of the image for the third question
   },
   {
-    question: "4*4/4",
-    options: [4, 0, 8, 16],
-    answer: 4
+    question: "Which country has this flag?",
+    options: ["China", "USA", "India", "Japan"],
+    answer: "India",
+    image: "https://wallpapers.com/images/featured/indian-flag-yqfmermanpgsw0jm.jpg" // URL of the image for the fourth question
   }
 ];
 
@@ -27,23 +32,23 @@ const Main = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(5); 
+  const [timer, setTimer] = useState(5); // Initial timer value set to 5 seconds
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer(prevTimer => {
         if (prevTimer === 1) {
           handleNextQuestion();
-          return 5; 
+          return 5; // Reset timer to 5 seconds for the next question
         } else {
-          return prevTimer - 1; 
+          return prevTimer - 1; // Decrement timer by 1 second
         }
       });
-    }, 1000); 
+    }, 1000); // Update timer every second
 
-    
+    // Clear interval on component unmount
     return () => clearInterval(interval);
-  }, [currentQuestion]); 
+  }, [currentQuestion]); // Run effect whenever currentQuestion changes
 
   const handleOptionSelect = option => {
     setSelectedOption(option);
@@ -56,15 +61,18 @@ const Main = () => {
   const handleNextQuestion = () => {
     setSelectedOption(null);
     setCurrentQuestion(prevQuestion => prevQuestion + 1);
-    setTimer(5); 
+    setTimer(5); // Reset timer to 5 seconds for the next question
   };
 
   return (
-    <div>
+    <div className='quiz'>
       <h1>Quiz Application</h1>
       {currentQuestion < questions.length ? (
         <div>
           <h4>Time remaining: {timer} seconds</h4>
+          {questions[currentQuestion].image && (
+            <img src={questions[currentQuestion].image} alt="Question" style={{ maxWidth: '20%' }} />
+          )}
           <h3>{questions[currentQuestion].question}</h3>
           <ul>
             {questions[currentQuestion].options.map((option, index) => (
