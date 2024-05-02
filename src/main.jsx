@@ -13,7 +13,8 @@ import ReactDOM from 'react-dom/client'
 // import Stopwatch from './stopwatch/Stopwatch'
 // import Main from './pokemon/pokemon/Main'
 // import Pokemon from './pokemon/pokemon/Pokemon'
-import Main from './Quiz/Main'
+// import Main from './Quiz/Main'
+import Main from './book/Main'
 
 
 

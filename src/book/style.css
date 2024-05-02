@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .book-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .second {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5rem;
+  }
+  
+  h3 {
+    margin: 0;
+  }
+  
+  .image {
+    margin-top: 0.5rem;
+  }
+  
+  .image img {
+    max-width: 100%;
+    height: auto;
+  }
